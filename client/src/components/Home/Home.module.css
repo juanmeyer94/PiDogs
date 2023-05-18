@@ -1,0 +1,114 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo {
+  width: 100%;
+  max-width: 500px;
+}
+
+.searchBar {
+  width: 100%;
+  max-width: 500px;
+  margin: 20px 0;
+}
+
+.filtersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.filter {
+  margin: 0 20px;
+}
+
+
+
+
+.img{
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  margin: 2%;
+}
+ 
+  
+
+  .button {
+    background-color: #2f6c98;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    margin-left: 20px;
+    transition: all 0.2s;
+  }
+  
+  .button:hover {
+    cursor: pointer;
+    background-color: #fff;
+    color: #2f6c98;
+    border: 1px solid #2f6c98;
+  }
+  
+  .button53 {
+    background-color: #2f6c98;
+    border: 0 solid #E5E7EB;
+    box-sizing: border-box;
+    color: #ffffff;
+    display: flex;
+    font-family: sans-serif,"Segoe UI","Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 700;
+    justify-content: center;
+    line-height: 1.75rem;
+    padding: .75rem 1.65rem;
+    position: relative;
+    text-align: center;
+    text-decoration: none #000000 solid;
+    
+    width: 300px;
+    max-width: 560px;
+    height: 60px;
+    margin: 3%;
+    position: relative;
+    cursor: pointer;
+    transform: rotate(-2deg);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button53:focus {
+    outline: 0;
+  }
+  
+  .button53:after {
+    content: '';
+    position: absolute;
+    border: 1px solid #fffcfc;
+    bottom: 4px;
+    left: 4px;
+    width: calc(100% - 1px);
+    height: calc(100% - 1px);
+  }
+  
+  .button53:hover:after {
+    bottom: 2px;
+    left: 2px;
+  }
+  
+  @media (min-width: 768px) {
+    .button53 {
+      padding: .75rem 3rem;
+      font-size: 1.25rem;
+    }
+  }

@@ -4,7 +4,7 @@ const { Dog, Temperament } = require('../db.js');
 require('dotenv').config();
 const URL = process.env.URL;
 const KEY = process.env.KEY;
-console.log(URL)
+
 // Función que devuelve una lista con los perros de la API:
 const getDogsApi = async () => {
     try {

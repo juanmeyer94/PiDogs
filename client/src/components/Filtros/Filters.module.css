@@ -1,0 +1,24 @@
+.select {
+    margin-right: 20px;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2f6c98;
+    border-radius: 8px;
+    border: 1px solid #2f6c98;
+    background-color: #fff;
+    transition: all 0.2s;
+  }
+  
+  .select:hover {
+    cursor: pointer;
+    background-color: #f8f8f8;
+  }
+  .option {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #2f6c98;
+    margin-bottom: 40px;
+  }
+
+ 
