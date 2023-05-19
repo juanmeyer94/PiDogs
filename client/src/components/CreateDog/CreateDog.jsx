@@ -67,7 +67,7 @@ const DogForm = () => {
         maxWeight: '',
         minLifeSpan: '',
         maxLifeSpan: '',
-        selectedTemperaments: []
+        temperaments: []
     });
 
 
@@ -92,15 +92,15 @@ const DogForm = () => {
     const handleTemperamentChange = event => {
         const temperament = event.target.value;
         setDogData(prevDogData => {
-            if (prevDogData.selectedTemperaments.includes(temperament)) {
+            if (prevDogData.temperaments.includes(temperament)) {
                 return {
                     ...prevDogData,
-                    selectedTemperaments: prevDogData.selectedTemperaments.filter(temp => temp !== temperament)
+                    temperaments: prevDogData.temperaments.filter(temp => temp !== temperament)
                 };
             } else {
                 return {
                     ...prevDogData,
-                    selectedTemperaments: [...prevDogData.selectedTemperaments, temperament]
+                    temperaments: [...prevDogData.temperaments, temperament]
                 };
             }
         });
@@ -171,7 +171,7 @@ const DogForm = () => {
             isError = true;
         }
 
-        if (dogData.selectedTemperaments.length <= 0) {
+        if (dogData.temperaments.length <= 0) {
             error.temperaments = "Debe seleccionar al menos un temperamento";
             isError = true;
         }
@@ -188,7 +188,7 @@ const DogForm = () => {
                 type="checkbox"
                 name={temperament.name}
                 value={temperament.name}
-                checked={dogData.selectedTemperaments.includes(temperament.name)}
+                checked={dogData.temperaments.includes(temperament.name)}
                 onChange={handleTemperamentChange}
             />
     <span >{temperament.name}</span>
@@ -275,7 +275,7 @@ const DogForm = () => {
                 <h4 className={styles.lifeSpan}>Promedio de vida:</h4>
                 <span className={styles.span}>{dogData.minLifeSpan} - {dogData.maxLifeSpan} años</span>
                 <h4 className={styles.temperaments}>Temperamentos:</h4>
-                <span className={styles.span}>{dogData.selectedTemperaments}</span>
+                <span className={styles.span}>{dogData.temperaments}</span>
                 <br />
             </div>
 

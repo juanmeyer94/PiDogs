@@ -38,9 +38,9 @@ export const getDogsByName = (name) => async (dispatch) => {
 
 export const createDog = (payload) => {
     return async function (dispatch) {
-        const response = await axios.post("http://localhost:3001/dogs/", payload);
-    
-        return response
+        await axios.post("http://localhost:3001/dogs/", payload);
+       return dispatch({ type: CREATE_DOG})
+       
     }
 }
 
