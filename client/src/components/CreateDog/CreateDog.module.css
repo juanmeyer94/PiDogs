@@ -1,5 +1,5 @@
 .formcontainer {
-    width: 600px;
+    width: 500px;
     height: 800px;
     background-color: antiquewhite;
     border-radius: 20px;
@@ -9,7 +9,7 @@
     align-items: center;
     justify-content: center;
     margin: 20px;
-    margin-left: 80px;
+    margin-left: 220px;
   }
   
   .formcontainer form {
@@ -111,9 +111,11 @@
   .name {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: -80px;
+    margin-bottom: 15px;
+    padding-bottom: -15x;
     font-family: 'Pacifico';
   }
+  
   
 
 .button53 {
@@ -131,10 +133,10 @@
     position: relative;
     text-align: center;
     text-decoration: none #000000 solid;
-    text-decoration-thickness: auto;
     width: 100%;
     margin-left: 80px;
     max-width: 460px;
+    margin-bottom: 60px;
     position: relative;
     cursor: pointer;
     transform: rotate(-2deg);
@@ -178,8 +180,8 @@
   text-align: center;
   text-decoration: none #000000 solid;
   width: 100%;
-  max-width: 460px;
-  margin-left: 700px;
+  max-width: 260px;
+  margin-left: 820px;
   margin-top: -90px;
   cursor: pointer;
   transform: rotate(-2deg);
@@ -217,12 +219,12 @@
   margin: 20px;
   margin-left: 980px;
   margin-top: -900px;
-  width: 750px;
+  width: 550px;
   height: 840px;
 }
 .span{
   font-weight: bold;
- margin: 5px;
+ margin: 10px;
  font-family: cursive;
 font-size: 20px;
 
@@ -236,6 +238,7 @@ font-size: 20px;
     font-family: 'Pacifico', cursive;
   font-size: 25px;
   color: darkcyan;
+  margin-top: -10px;
   }
 .container {
   display: flex;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTemperaments, createDog } from "../../redux/actions/actions"
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styles from "./CreateDog.module.css"
 const regexURL = /^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/;
 const regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚú\s]+$/;
@@ -42,6 +42,7 @@ const DogForm = () => {
 
     const prevHandler = () => {
         setErrors({}) // todavia no funciona, arreglar
+
         const prevPage = currentPage - 1;
         if (prevPage < 0) {
             return;
@@ -117,7 +118,7 @@ const DogForm = () => {
 
 
         return (
-            <h1>Se ha creado el perro con exito</h1>
+            <h1>Se ha creado el perro con exito</h1> // agregar clase de estilo
         )
 
     };
@@ -258,19 +259,19 @@ const DogForm = () => {
                 </div>
 
 
-                <br />
+                </div><div>
                 <button className={styles.button53} type="submit">Crear Perro</button>
-            </div>
+                </div>
         </form>
         <div className={styles.container}>
             <div className={styles.card}>           <img className={styles.img} src={"https://hips.hearstapps.com/hmg-prod/images/dog-puns-1581708208.jpg"} alt={dogData.name} />
             <div className={styles.name2}>
                 <h1 >Nombre: <br />
                     {dogData.name}</h1></div>
-                <h4 className={styles.weight}>Peso:</h4>
-                <span className={styles.span}>{dogData.minWeight} - {dogData.maxWeight} kgs </span>
-                <h4 className={styles.height}>Altura:</h4>
-                <span className={styles.span}>{dogData.minHeight} - {dogData.maxHeight} cms</span>
+                <h4 className={styles.weight}>Peso:</h4><div>
+                <span className={styles.span}>{dogData.minWeight} - {dogData.maxWeight} kgs </span></div>
+                <h4 className={styles.height}>Altura:</h4><div>
+                <span className={styles.span}>{dogData.minHeight} - {dogData.maxHeight} cms</span></div>
                 <h4 className={styles.lifeSpan}>Promedio de vida:</h4>
                 <span className={styles.span}>{dogData.minLifeSpan} - {dogData.maxLifeSpan} años</span>
                 <h4 className={styles.temperaments}>Temperamentos:</h4>
@@ -279,7 +280,7 @@ const DogForm = () => {
             </div>
 
             <div>
-                <Link to="/home"><button className={styles.button52}>Home</button></Link></div>
+                <NavLink to="/home"><button className={styles.button52}>Home</button></NavLink></div>
 
         </div>
     </div>

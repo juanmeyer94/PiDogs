@@ -1,0 +1,32 @@
+.pageContainer {
+    position: center;
+    height: 900px;
+    background-image: url("https://www.pedalo.co.uk/wp-content/uploads/2019/05/Firebox-1024x599.png");
+    background-size: cover;
+    z-index: -1;
+  }
+  .button {
+    background-color: #2f6c98;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    margin-left: 20px;
+    transition: all 0.2s;
+
+  }
+  
+  .button:hover {
+    cursor: pointer;
+    background-color: #fff;
+    color: #2f6c98;
+    border: 1px solid #2f6c98;
+  }
+  
+
+
+  .message{
+    margin-right: 1000px;
+  }

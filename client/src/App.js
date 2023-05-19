@@ -4,6 +4,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import Home from './components/Home/Home';
 import CreateDog from './components/CreateDog/CreateDog';
 import Detail from './components/Detail/Detail';
+import PageNotFound from './components/PageNotFound/PageNotFound';
 
 function App() {
   return (
@@ -14,11 +15,15 @@ function App() {
     <Route exact path= "/home" component = {Home} />
     <Route exact path= "/create" component = {CreateDog} />
     <Route path='/detail/:id' component={Detail } />
+   <Route component={PageNotFound} />
+    
     
       </Switch>
+      
     </div>
     </BrowserRouter>
   );
 }
 
 export default App;
+/* agregar pagina de error cdo se quieren meter donde no va*/ 

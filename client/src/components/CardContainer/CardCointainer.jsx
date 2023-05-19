@@ -13,6 +13,19 @@ const CardsContainer = ({ dogs }) => {
     const firstIndex = lastIndex - ITEMS_PER_PAGE;
     const currentDogs = dogs.slice(firstIndex, lastIndex);
 
+
+    // ir a la primera pagina
+const firstPageHandler = () => {
+    setCurrentPage(1);
+};
+
+// obenemos el total de paginas, redondemos para arriba y le pasamos el valor total ya que sería el ultimo 
+const lastPageHandler = () => {
+    const totalPages = Math.ceil(dogs.length / ITEMS_PER_PAGE);
+    setCurrentPage(totalPages);
+};
+
+
     // función para manejar el click en el botón 'Prev'
     const prevHandler = () => {
         if (currentPage > 1) {
@@ -26,12 +39,22 @@ const CardsContainer = ({ dogs }) => {
             setCurrentPage(currentPage + 1);
         }
     };
+   
 
     return (
         <div >
 
-            <button className={styles.button} onClick={prevHandler}>Prev</button>
-            <button className={styles.button} onClick={nextHandler}>Next</button>
+
+    <div>
+        <button className={styles.button} onClick={firstPageHandler}>First</button>
+        <button className={styles.button} onClick={prevHandler}>Prev</button>
+        <span className={styles.button}>{currentPage}</span>
+        <button className={styles.button} onClick={nextHandler}>Next</button>
+        <button className={styles.button} onClick={lastPageHandler}>Last</button>
+       
+    </div>
+
+
 
             <div>
                 {/* actualizar el renderizado de los elementos utilizando currentDogs */}

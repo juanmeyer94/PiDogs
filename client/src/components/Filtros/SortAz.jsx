@@ -3,15 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { sortAz } from "../../redux/actions/actions";
 import styles from "./Filters.module.css"
 
-const SortAz = () => {
+const SortAz = ({dogs}) => {
     const dispatch = useDispatch();
-    const dogs = useSelector(state => state.dogs)
+
+
+
     const handleFilter = (event) => {
         const value = event.target.value;
-     dispatch(sortAz(dogs, value))
-        
+        dispatch(sortAz(dogs, value))
+
     }
-   
+
 
     return (
 

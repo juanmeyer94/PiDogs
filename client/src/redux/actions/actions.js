@@ -70,7 +70,7 @@ export const filterDogsByTemperament = (temperament, dogs) => {
 };
 
 export const fromFilter = (dogs, value) => {
-    return async function (dispatch) {
+    return function (dispatch) {
         const dogsFrom = [];
         dogs.forEach(dog => {
             if (dog.from === value) dogsFrom.push(dog);
@@ -84,31 +84,29 @@ export const fromFilter = (dogs, value) => {
 }
 
 export const sortAz = (dogs, value) => {
-    
-        let dogsSorted = []
-        return async function (dispatch) {
-        if (value === "ASC") {
-            dogsSorted = dogs.sort((a, b) => a.name.localeCompare(b.name))
-        }
-        if (value === "DESC") {
-            dogsSorted = dogs.sort((a, b) => b.name.localeCompare(a.name))
-        }
-        
-        return dispatch({ type: SORT_AZ, payload: dogsSorted })}
-        
-    
-}
+    let dogsSorted = [];
+  
+    if (value === "ASC") {
+      dogsSorted = [...dogs].sort((a, b) => a.name.localeCompare(b.name));
+    }
+    if (value === "DESC") {
+      dogsSorted = [...dogs].sort((a, b) => b.name.localeCompare(a.name));
+    }
+  
+    return { type: SORT_AZ, payload: dogsSorted };
+  };
+  
 
 export const sortFilterLH = (dogs, value) => {
     try {
         let dogsSorted = []
         if (value === "high-low") {
-            dogsSorted = dogs.sort(
+            dogsSorted = [...dogs].sort(
                 (a, b) =>
                     (a.minWeight < b.minWeight) ? 1 : (a.minWeight > b.minWeight) ? -1 : 0);
         }
         if (value === "low-high") {
-            dogsSorted = dogs.sort(
+            dogsSorted = [...dogs].sort(
                 (a, b) =>
                     (a.minWeight > b.minWeight) ? 1 : (a.minWeight < b.minWeight) ? -1 : 0);
         }

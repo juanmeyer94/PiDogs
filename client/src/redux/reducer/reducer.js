@@ -1,4 +1,4 @@
-import { GET_ALL_DOGS, GET_BY_ID, GET_BY_NAME, CREATE_DOG, GET_TEMPERAMENTS, FILTER_DOGS_BY_TEMPERAMENT, FILTER_DOGS_BY_FROM, SORT_AZ} from "../actions/actions";
+import { GET_ALL_DOGS, GET_BY_ID, GET_BY_NAME, CREATE_DOG, GET_TEMPERAMENTS, FILTER_DOGS_BY_TEMPERAMENT, FILTER_DOGS_BY_FROM, SORT_AZ, SORT_FILTER_WEIGHT} from "../actions/actions";
 
 
 const initialState = {
@@ -69,6 +69,15 @@ const reducer = (state = initialState, action) => {
             dogs: action.payload,
             filter: true,
             loading: true,
+        }
+        case SORT_FILTER_WEIGHT: 
+        return {
+            ...state,
+            dogs: action.payload,
+            filter: true,
+            loading: true,
+            
+            
         }
             default:
                 return { ...state };

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllDogs } from "../../redux/actions/actions";
 import { NavLink } from "react-router-dom";
 import styles from "./Home.module.css"
-// import Paginado from "../Paginado/Paginado";
 import SearchBar from "../SearchBar/SearchBar";
 import FilterByTemp from "../Filtros/FilterByTemp";
 import From from "../Filtros/From";
@@ -19,16 +18,17 @@ export default function Home() {
     
 
   useEffect(() => {
-
     dispatch(getAllDogs());
+    console.log(dogs)
 
   }, [dispatch])
 
   function handleClick(e) {
     e.preventDefault();
     dispatch(getAllDogs());
-
   }
+
+
 
   return (
     <div className={styles.container}>
@@ -40,7 +40,7 @@ export default function Home() {
       <div className={styles.filtersContainer}>
       <FilterByTemp className={styles.filter} />
         <From className={styles.filter} />
-        <SortAz className={styles.filter}/>
+        <SortAz dogs={dogs} className={styles.filter}/>
         <SortWeight className={styles.filter} dogs={dogs}/>
         <button className={styles.button} onClick={handleClick}>¡Vuelvan perritos!</button>
        

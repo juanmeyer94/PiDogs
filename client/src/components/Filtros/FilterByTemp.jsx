@@ -36,12 +36,7 @@ const FilterByTemp = () => {
 
 
 
-    // function handleClick(e) {
-    //     e.preventDefault();
-    //     dispatch(getAllDogs()); la fn del button, que todavia nos sabemos donde va el botón
-    
-    //   }
-
+                  
 
 
 return(
