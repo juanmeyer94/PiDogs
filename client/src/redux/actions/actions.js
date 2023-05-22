@@ -8,8 +8,11 @@ export const FILTER_DOGS_BY_TEMPERAMENT = "FILTER_DOGS_BY_TEMPERAMENT"
 export const FILTER_DOGS_BY_FROM = "FILTER_DOGS_BY_FROM"
 export const SORT_AZ = "SORT_AZ"
 export const SORT_FILTER_WEIGHT = "SORT_FILTER_WEIGHT"
+export const DELETE_DOG = "DELETE_DOG"
+export const UPDATE_DOG = "UPDATE_DOG"
 
 
+//generales
 export const getAllDogs = () => {
     return async function (dispatch) {
         const dogs = await axios.get('http://localhost:3001/dogs');
@@ -27,13 +30,10 @@ export const getDogById = (id) => {
 }
 
 export const getDogsByName = (name) => async (dispatch) => {
-    try {
+  
         const dogsName = await axios.get("http://localhost:3001/dogs?name=" + name);
         return dispatch({ type: GET_BY_NAME, payload: dogsName.data });
-    } catch (error) {
-        const dogsNameNoSearch = []
-        return dispatch({ type: GET_BY_NAME, payload: dogsNameNoSearch })
-    }
+    
 }
 
 export const createDog = (payload) => {
@@ -51,8 +51,25 @@ export const getTemperaments = () => {
     }
 }
 
-export const filterDogsByTemperament = (temperament, dogs) => {
+export const deleteDog = (id) => {
     return async function (dispatch) {
+        await axios.delete(`http://localhost:3001/dogs/${id}`);
+        return dispatch({ type: DELETE_DOG, payload: id })
+    }
+}
+
+export const updateDog = (payload) => {
+    return async function (dispatch) {
+        await axios.put(`http://localhost:3001/dogs/${payload.id}`, payload);
+        return dispatch({ type: UPDATE_DOG, payload: payload })
+    }
+}
+
+
+
+//filtros
+export const filterDogsByTemperament = (temperament, dogs) => {
+    return function (dispatch) {
         let dogFilter = [];
         dogs.forEach(dog => {
             const dogTemp = [];
@@ -98,7 +115,7 @@ export const sortAz = (dogs, value) => {
   
 
 export const sortFilterLH = (dogs, value) => {
-    try {
+   
         let dogsSorted = []
         if (value === "high-low") {
             dogsSorted = [...dogs].sort(
@@ -113,7 +130,4 @@ export const sortFilterLH = (dogs, value) => {
         return function (dispatch) {
             dispatch({ type: SORT_FILTER_WEIGHT, payload: dogsSorted })
         }
-    } catch (error) {
-        throw new Error(error);
-    }
 }

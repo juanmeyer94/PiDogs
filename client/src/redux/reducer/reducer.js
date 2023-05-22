@@ -22,7 +22,7 @@ const reducer = (state = initialState, action) => {
         case GET_BY_ID:
             return {
                 ...state,
-                dogs: action.payload,
+                dog: action.payload,
                 filter: true,
                 loading: false
             }

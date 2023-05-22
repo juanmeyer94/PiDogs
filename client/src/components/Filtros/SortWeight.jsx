@@ -6,6 +6,7 @@ import styles from "./Filters.module.css"
 const SortWeight = ({ dogs }) => {
     const dispatch = useDispatch();
 
+    //se hace un dispatch de la action del reducer con los parametros que requiere
     const sortHandlerLH = (event) => {
         const value = event.target.value;
         dispatch(sortFilterLH(dogs, value));

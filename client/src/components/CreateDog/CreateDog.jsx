@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getTemperaments, createDog } from "../../redux/actions/actions"
 import { NavLink } from 'react-router-dom';
 import styles from "./CreateDog.module.css"
+import Modal from '../Modal/Modal';
 const regexURL = /^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/;
 const regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚú\s]+$/;
 const TEMPS_PER_PAGE = 10;
@@ -12,11 +13,12 @@ const DogForm = () => {
     const dispatch = useDispatch();
     const temperaments = useSelector(state => state.temperaments); // Obtiene los temperamentos del estado de Redux
     const [errors, setErrors] = useState({});
+    const [showModal, setShowModal] = useState(false)
 
 
 
     //paginado
-    const [currentPage, setPage] = useState(0);
+    const [currentPage, setPage] = useState(1);
     const [paginatedTemps, setPaginatedTemps] = useState([]);
 
 
@@ -27,7 +29,7 @@ const DogForm = () => {
     };
 
     const nextHandler = () => {
-        setErrors({})// todavia no funciona, arreglar
+        
         const totalTemps = temperaments.length;
         const nextPage = currentPage + 1;
 
@@ -41,7 +43,7 @@ const DogForm = () => {
     };
 
     const prevHandler = () => {
-        setErrors({}) // todavia no funciona, arreglar
+       
 
         const prevPage = currentPage - 1;
         if (prevPage < 0) {
@@ -77,7 +79,7 @@ const DogForm = () => {
     }, [dispatch]);
 
 
-
+// obtenemos los valores de nuestro input y los guardamos en el estado local dogData 
     const handleInputChange = event => {
         const { name, value } = event.target;
         setDogData(prevDogData => ({
@@ -88,7 +90,7 @@ const DogForm = () => {
         ));
     };
 
-
+//tomamos el evento que selecciona el temperamento que quiere añadir y preguntamos, si ya lo tiene, aplicamos el filter y quitamos ese temperamento seleccionado, y biceversa si no lo tiene.
     const handleTemperamentChange = event => {
         const temperament = event.target.value;
         setDogData(prevDogData => {
@@ -106,24 +108,25 @@ const DogForm = () => {
         });
     };
 
+
+    // cuando se envia el formulario, se le aplica la validación, y si no hay errores, hace el dispatch, en caso que haya errores, los muestra en pantalla
+    // si todo sale bien, se muestra el modal o pop up, ventana emergente, etc
     const handleSubmit = e => {
         e.preventDefault();
         const error = onValidate(dogData);
         if (!error) {
-
-            dispatch(createDog(dogData));
+            try {
+                dispatch(createDog(dogData));
+                setShowModal(true);
+            } catch (err) {
+                setErrors({ message: "Error al crear el perro." });
+            }
         } else {
             setErrors(error);
         }
-
-
-        return (
-            <h1>Se ha creado el perro con exito</h1> // agregar clase de estilo
-        )
-
     };
 
-
+// validación
     const onValidate = dogData => {
         let isError = false;
         let error = {};
@@ -179,7 +182,7 @@ const DogForm = () => {
         return isError ? error : null;
     }
 
-
+// mapeamos la cantidad de temperamentos que se muestran en la pagina, y los renderizamos
     const showTemps = paginatedTemps.map(temperament => (
         <div className={styles.checkbox}  key={temperament.id}>
         <label className={styles.checkboxLabel}>
@@ -196,8 +199,12 @@ const DogForm = () => {
         </label>
         </div>
     ))
+// esto pone el modal en false para cerrar la ventan
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
 
-
+//todo lo que se renderiza, con sus funciones llamadas y estilos.
     return (<div>
         <form onSubmit={handleSubmit} className={styles.formcontainer}>
             <div  className={styles.name}>
@@ -210,7 +217,7 @@ const DogForm = () => {
                 </label>
                 <div className={styles.weight}>
                 <label>
-                    Image URL:
+                    Imagen URL:
                     <input placeholder='.jpg o .png' type="text" name="image" value={dogData.image} onChange={handleInputChange} />
                     <br />
                     {errors && errors.image ? <p>{errors.image}</p> : null}
@@ -228,7 +235,7 @@ const DogForm = () => {
                 </div>
                 <div className={styles.weight}>
                 <label>
-                    Altura 
+                    Altura :
                     <input placeholder='mínima' type="number" name="minHeight" value={dogData.minHeight} onChange={handleInputChange} /> - 
                     <input placeholder="máxima" type="number" name="maxHeight" value={dogData.maxHeight} onChange={handleInputChange} />
                     </label>
@@ -264,18 +271,21 @@ const DogForm = () => {
                 </div>
         </form>
         <div className={styles.container}>
-            <div className={styles.card}>           <img className={styles.img} src={"https://hips.hearstapps.com/hmg-prod/images/dog-puns-1581708208.jpg"} alt={dogData.name} />
+            <div className={styles.card}>   
+            {dogData.image && dogData.image.length > 20 ? (
+                <img src={dogData.image} alt={dogData.name} className={styles.img} />
+            ) : (<img className={styles.img} src={"https://hips.hearstapps.com/hmg-prod/images/dog-puns-1581708208.jpg"} alt={dogData.name} />)}        
             <div className={styles.name2}>
                 <h1 >Nombre: <br />
                     {dogData.name}</h1></div>
                 <h4 className={styles.weight}>Peso:</h4><div>
-                <span className={styles.span}>{dogData.minWeight} - {dogData.maxWeight} kgs </span></div>
+                <span className={styles.span}>{dogData.minWeight}  - {dogData.maxWeight} kgs </span></div>
                 <h4 className={styles.height}>Altura:</h4><div>
-                <span className={styles.span}>{dogData.minHeight} - {dogData.maxHeight} cms</span></div>
+                <span className={styles.span}>{dogData.minHeight}  - {dogData.maxHeight} cms</span></div>
                 <h4 className={styles.lifeSpan}>Promedio de vida:</h4>
-                <span className={styles.span}>{dogData.minLifeSpan} - {dogData.maxLifeSpan} años</span>
+                <span className={styles.span}>{dogData.minLifeSpan}  - {dogData.maxLifeSpan} años</span>
                 <h4 className={styles.temperaments}>Temperamentos:</h4>
-                <span className={styles.span}>{dogData.temperaments}</span>
+                <span className={styles.span}>{dogData.temperaments} </span>
                 <br />
             </div>
 
@@ -283,7 +293,11 @@ const DogForm = () => {
                 <NavLink to="/home"><button className={styles.button52}>Home</button></NavLink></div>
 
         </div>
+        <Modal show={showModal} handleClose={handleCloseModal}>
+                <h2>El perro fue creado con éxito</h2>
+            </Modal>
     </div>
+    
     );
 };
 

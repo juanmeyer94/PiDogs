@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { sortAz } from "../../redux/actions/actions";
 import styles from "./Filters.module.css"
 
@@ -7,7 +7,7 @@ const SortAz = ({dogs}) => {
     const dispatch = useDispatch();
 
 
-
+// se hace un dispatch de la action del reducer con los parametros que requiere
     const handleFilter = (event) => {
         const value = event.target.value;
         dispatch(sortAz(dogs, value))

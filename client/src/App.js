@@ -5,25 +5,26 @@ import Home from './components/Home/Home';
 import CreateDog from './components/CreateDog/CreateDog';
 import Detail from './components/Detail/Detail';
 import PageNotFound from './components/PageNotFound/PageNotFound';
+import Modify from './components/Modify/Modify';
 
 function App() {
   return (
     <BrowserRouter>
-    <div className="App">
-      <Switch>
-    <Route exact path="/" component={LandingPage} />
-    <Route exact path= "/home" component = {Home} />
-    <Route exact path= "/create" component = {CreateDog} />
-    <Route path='/detail/:id' component={Detail } />
-   <Route component={PageNotFound} />
-    
-    
-      </Switch>
-      
-    </div>
+      <div className="App">
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/create" component={CreateDog} />
+          <Route path='/detail/:id' component={Detail} />
+          <Route path='/modify/:id' component={Modify} />
+          <Route component={PageNotFound} />
+
+
+        </Switch>
+
+      </div>
     </BrowserRouter>
   );
 }
 
 export default App;
-/* agregar pagina de error cdo se quieren meter donde no va*/ 

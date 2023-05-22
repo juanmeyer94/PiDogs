@@ -5,10 +5,10 @@ import styles from "./Filters.module.css"
 const From = () => {
 
 
-
+// nos traemos el estado global dogs
 const dogs = useSelector(state => state.dogs);
 const dispatch = useDispatch();
-    
+    // retornamos con con el evento el dispatchs con las props que necesita la action del reducer
     return (
         <div>
            <select className={styles.select} value="default" onChange={(event) => {

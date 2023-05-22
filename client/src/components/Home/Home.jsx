@@ -15,14 +15,15 @@ import CardsContainer from "../CardContainer/CardCointainer";
 export default function Home() {
   const dispatch = useDispatch();
   const dogs = useSelector(state => state.dogs);
-    
+    //nos traemos el estado global dogs, que se rellena con el useEffect de abajo
 
   useEffect(() => {
     dispatch(getAllDogs());
-    console.log(dogs)
+    
 
   }, [dispatch])
 
+  //limpia los filtros, vuelve a establecer el global como estaba.
   function handleClick(e) {
     e.preventDefault();
     dispatch(getAllDogs());

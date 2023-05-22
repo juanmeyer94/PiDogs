@@ -1,6 +1,8 @@
 import style from './Card.module.css'
 import { Link } from 'react-router-dom';
 
+
+//mostramos la carta con la info del dog
 const Card = (props) => {
 
     
